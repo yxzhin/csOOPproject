@@ -1,6 +1,6 @@
 ﻿namespace csOOPproject.Models
 {
-    public class Item
+    public abstract class Item
     {
     }
 }

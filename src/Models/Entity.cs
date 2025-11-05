@@ -4,7 +4,7 @@ namespace csOOPproject.Models
 {
     public abstract class Entity
     {
-        protected string Name;
+        public string Name { get; protected set; }
         protected double BaseHp;
         protected double BaseMp;
         protected double BaseAtk;

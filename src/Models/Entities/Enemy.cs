@@ -1,9 +1,15 @@
 ﻿using csOOPproject.Interfaces;
+using System.Collections.Generic;
 
 namespace csOOPproject.Models.Entities
 {
     public class Enemy : Entity, IHealable, IExperienceGiver
     {
+
+        public Dictionary<Item, int> Drops { get; protected set; }
+            = new Dictionary<Item, int>();
+        public Dictionary<int, float> DropChances { get; protected set; }
+            = new Dictionary<int, float>();
 
         public Enemy(string name, double base_hp, double base_mp,
             double base_atk, double base_def, int lvl = 1)

@@ -1,12 +1,14 @@
 ﻿using csOOPproject.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace csOOPproject.Models.Entities
 {
     public sealed class Player : Entity, IHealable
     {
 
-        public double Exp { get; private set; } = 0;
+        private double Exp = 0;
+        public Dictionary<Item, int> Inventory = new Dictionary<Item, int>();
 
         public Player(string name, double base_hp, double base_mp,
             double base_atk, double base_def, int lvl = 1)

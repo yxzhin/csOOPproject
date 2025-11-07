@@ -49,7 +49,23 @@ namespace csOOPproject.Models
                 return;
             }
             Ocene[predmet].Add(ocena);
-            Console.WriteLine($"ocena je uspesno dodata!");
+            Console.WriteLine("ocena je uspesno dodata!");
+        }
+
+        public void ObrisiOcenu(Predmet predmet, int ocena)
+        {
+            if (!Ocene.ContainsKey(predmet))
+            {
+                Console.WriteLine("predmet nije pronadjen!");
+                return;
+            }
+            if (!Ocene[predmet].Contains(ocena))
+            {
+                Console.WriteLine("ocena ne postoji!");
+                return;
+            }
+            _ = Ocene.Remove(predmet);
+            Console.WriteLine("ocena je uspesno obrisana!");
         }
 
         public double IzracunajProsek(Predmet predmet)

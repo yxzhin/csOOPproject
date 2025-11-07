@@ -32,5 +32,15 @@ namespace csOOPproject.Models
             ucenik.DodajOcenu(Predmet, ocena);
         }
 
+        public void ObrisiOcenu(Ucenik ucenik, int ocena)
+        {
+            if (ucenik.Odeljenje != Odeljenje)
+            {
+                Console.WriteLine("ne mozete obrisati ocenu uceniku iz drugog odeljenja!");
+                return;
+            }
+            ucenik.ObrisiOcenu(Predmet, ocena);
+        }
+
     }
 }

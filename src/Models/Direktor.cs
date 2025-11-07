@@ -8,9 +8,9 @@ namespace csOOPproject.Models
 
         public string Sifra { get; private set; }
 
-        public Dictionary<int, Ucenik> Ucenici { get; private set; }
+        public static Dictionary<int, Ucenik> Ucenici { get; private set; }
             = new Dictionary<int, Ucenik>();
-        public Dictionary<int, Nastavnik> Nastavnici { get; private set; }
+        public static Dictionary<int, Nastavnik> Nastavnici { get; private set; }
             = new Dictionary<int, Nastavnik>();
 
         public Direktor(string ime, string prezime, int uzrast,
@@ -30,11 +30,23 @@ namespace csOOPproject.Models
             Console.WriteLine("ucenici:");
             foreach (KeyValuePair<int, Ucenik> ucenik in Ucenici)
             {
+                if (Ucenici.Count == 0)
+                {
+                    Console.WriteLine("nema ucenika!");
+                    break;
+                }
+                Console.WriteLine($"ucenik sa id {ucenik.Key}:");
                 ucenik.Value.PrikaziInformacije();
             }
             Console.WriteLine("nastavnici:");
             foreach (KeyValuePair<int, Nastavnik> nastavnik in Nastavnici)
             {
+                if (Nastavnici.Count == 0)
+                {
+                    Console.WriteLine("nema nastavnika!");
+                    break;
+                }
+                Console.WriteLine($"nastavnik sa id {nastavnik.Key}:");
                 nastavnik.Value.PrikaziInformacije();
             }
         }

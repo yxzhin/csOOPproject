@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace csOOPproject.Models
 {
@@ -20,6 +21,23 @@ namespace csOOPproject.Models
             base.PrikaziInformacije();
             Predmet.PrikaziInformacije();
             Odeljenje.PrikaziInformacije();
+        }
+
+        public void PrikaziSveUcenikeOdeljenja()
+        {
+            if (Direktor.Ucenici.Count == 0)
+            {
+                Console.WriteLine("nema ucenika!");
+                return;
+            }
+            foreach (KeyValuePair<int, Ucenik> ucenik in Direktor.Ucenici)
+            {
+                if (ucenik.Value.Odeljenje == Odeljenje)
+                {
+                    Console.WriteLine($"ucenik sa id: {ucenik.Key}");
+                    ucenik.Value.PrikaziInformacije();
+                }
+            }
         }
 
         public void DodajOcenu(Ucenik ucenik, int ocena)

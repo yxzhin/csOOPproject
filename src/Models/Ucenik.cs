@@ -38,6 +38,8 @@ namespace csOOPproject.Models
                 string ocene = string.Join(", ", ocena.Value);
                 ocene = ocena.Value.Count > 0 ? ocene : "prazan skup";
                 Console.WriteLine($"ocene: {ocene}");
+                double prosek = IzracunajProsek(ocena.Key);
+                Console.WriteLine($"prosek: {prosek}");
             }
         }
 

@@ -48,10 +48,12 @@ namespace csOOPproject
                 else if (osoba is Nastavnik)
                 {
                     Console.WriteLine("2 = prikazi sve ucenike svog odeljenja;");
+                    Console.WriteLine("3 = dodaj ocenu uceniku;");
+                    Console.WriteLine("4 = obrisi ocenu uceniku;");
                 }
                 else
                 {
-                    Console.WriteLine("");
+                    Console.WriteLine("2 = prikazi svoje ocene i prosek;");
                 }
                 Console.WriteLine("73 = izlaz.");
 

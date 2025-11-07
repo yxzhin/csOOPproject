@@ -5,10 +5,10 @@ namespace csOOPproject.Models
 {
     public sealed class Direktor : Osoba
     {
-        public List<Ucenik> Ucenici { get; private set; }
-            = new List<Ucenik>();
-        public List<Nastavnik> Nastavnici { get; private set; }
-            = new List<Nastavnik>();
+        public Dictionary<int, Ucenik> Ucenici { get; private set; }
+            = new Dictionary<int, Ucenik>();
+        public Dictionary<int, Nastavnik> Nastavnici { get; private set; }
+            = new Dictionary<int, Nastavnik>();
 
         public Direktor(string ime, string prezime, int uzrast,
             DateTime datum_rodjenja)
@@ -20,28 +20,54 @@ namespace csOOPproject.Models
         public override void PrikaziInformacije()
         {
             base.PrikaziInformacije();
+        }
+
+        public void PrikaziSveOsobe()
+        {
             Console.WriteLine("ucenici:");
-            foreach (Ucenik ucenik in Ucenici)
+            foreach (KeyValuePair<int, Ucenik> ucenik in Ucenici)
             {
-                ucenik.PrikaziInformacije();
+                ucenik.Value.PrikaziInformacije();
             }
             Console.WriteLine("nastavnici:");
-            foreach (Nastavnik nastavnik in Nastavnici)
+            foreach (KeyValuePair<int, Nastavnik> nastavnik in Nastavnici)
             {
-                nastavnik.PrikaziInformacije();
+                nastavnik.Value.PrikaziInformacije();
             }
         }
 
-        public void DodajUcenika(Ucenik ucenik)
+        public void DodajUcenika(int id, Ucenik ucenik)
         {
-            Ucenici.Add(ucenik);
+            Ucenici.Add(id, ucenik);
             Console.WriteLine($"ucenik je uspesno dodat!");
         }
 
-        public void DodajNastavnika(Nastavnik nastavnik)
+        public void DodajNastavnika(int id, Nastavnik nastavnik)
         {
-            Nastavnici.Add(nastavnik);
+            Nastavnici.Add(id, nastavnik);
             Console.WriteLine($"nastavnik je uspesno dodat!");
+        }
+
+        public void ObrisiUcenika(int id)
+        {
+            if (!Ucenici.ContainsKey(id))
+            {
+                Console.WriteLine($"ucenik ne postoji!");
+                return;
+            }
+            _ = Ucenici.Remove(id);
+            Console.WriteLine("ucenik je uspesno obrisan!");
+        }
+
+        public void ObrisiNastavnika(int id)
+        {
+            if (!Nastavnici.ContainsKey(id))
+            {
+                Console.WriteLine($"nastavnik ne postoji!");
+                return;
+            }
+            _ = Nastavnici.Remove(id);
+            Console.WriteLine("nastavnik je uspesno obrisan!");
         }
 
 

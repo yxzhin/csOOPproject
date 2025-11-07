@@ -1,4 +1,5 @@
-﻿using System;
+﻿using csOOPproject.Services;
+using System;
 using System.Collections.Generic;
 
 namespace csOOPproject.Models
@@ -51,20 +52,194 @@ namespace csOOPproject.Models
             }
         }
 
-        public void DodajUcenika(int id, Ucenik ucenik)
+        public void DodajUcenika()
         {
+            int id;
+            while (true)
+            {
+                Console.WriteLine("unesite id novog ucenika:");
+                if (!int.TryParse(Console.ReadLine(), out int odgovor))
+                {
+                    Console.WriteLine("unesite ispravan id!");
+                    continue;
+                }
+                id = odgovor;
+                break;
+            }
+
+            Console.WriteLine("unesite ime novog ucenika:");
+            string ime = Console.ReadLine();
+
+            Console.WriteLine("unesite prezime:");
+            string prezime = Console.ReadLine();
+
+            int uzrast;
+            while (true)
+            {
+                Console.WriteLine("unesite uzrast (0-120):");
+                if (!int.TryParse(Console.ReadLine(), out int odgovor)
+                    || odgovor < 0
+                    || odgovor > 120)
+                {
+                    Console.WriteLine("unesite ispravan uzrast!");
+                    continue;
+                }
+                uzrast = odgovor;
+                break;
+            }
+
+            DateTime datum_rodjenja;
+            while (true)
+            {
+                Console.WriteLine("unesite datum rodjenja (npr. 25.02.2009):");
+                if (!DateTime.TryParse(Console.ReadLine(),
+                    out DateTime odgovor))
+                {
+                    Console.WriteLine("unesite ispravan datum!");
+                    continue;
+                }
+                datum_rodjenja = odgovor;
+                break;
+            }
+
+            Odeljenje odeljenje;
+            List<string> sva_odeljenja = new List<string>();
+
+            foreach (KeyValuePair<int, Odeljenje> od in
+                SchoolManagementService.sva_odeljenja)
+            {
+                sva_odeljenja.Add($"{od.Key} = {od.Value.VratiOdeljenje()}");
+            }
+            while (true)
+            {
+                Console.WriteLine("izaberite odeljenje:");
+                Console.WriteLine(string.Join(", ", sva_odeljenja));
+                if (!int.TryParse(Console.ReadLine(), out int odgovor))
+                {
+                    Console.WriteLine("unesite ispravan broj!");
+                    continue;
+                }
+                odeljenje = SchoolManagementService.sva_odeljenja[odgovor];
+                break;
+            }
+            Ucenik ucenik = new Ucenik(ime, prezime, uzrast, datum_rodjenja, odeljenje);
             Ucenici.Add(id, ucenik);
             Console.WriteLine($"ucenik je uspesno dodat!");
         }
 
-        public void DodajNastavnika(int id, Nastavnik nastavnik)
+        public void DodajNastavnika()
         {
+            int id;
+            while (true)
+            {
+                Console.WriteLine("unesite id novog nastavnika:");
+                if (!int.TryParse(Console.ReadLine(), out int odgovor))
+                {
+                    Console.WriteLine("unesite ispravan id!");
+                    continue;
+                }
+                id = odgovor;
+                break;
+            }
+
+            Console.WriteLine("unesite ime novog nastavnika:");
+            string ime = Console.ReadLine();
+
+            Console.WriteLine("unesite prezime:");
+            string prezime = Console.ReadLine();
+
+            int uzrast;
+            while (true)
+            {
+                Console.WriteLine("unesite uzrast (0-120):");
+                if (!int.TryParse(Console.ReadLine(), out int odgovor)
+                    || odgovor < 0
+                    || odgovor > 120)
+                {
+                    Console.WriteLine("unesite ispravan uzrast!");
+                    continue;
+                }
+                uzrast = odgovor;
+                break;
+            }
+
+            DateTime datum_rodjenja;
+            while (true)
+            {
+                Console.WriteLine("unesite datum rodjenja (npr. 25.02.2009):");
+                if (!DateTime.TryParse(Console.ReadLine(),
+                    out DateTime odgovor))
+                {
+                    Console.WriteLine("unesite ispravan datum!");
+                    continue;
+                }
+                datum_rodjenja = odgovor;
+                break;
+            }
+
+            Predmet predmet;
+            List<string> svi_predmeti = new List<string>();
+
+            foreach (KeyValuePair<int, Predmet> pr in
+                SchoolManagementService.svi_predmeti)
+            {
+                svi_predmeti.Add($"{pr.Key} = {pr.Value.Naziv}");
+            }
+            while (true)
+            {
+                Console.WriteLine("izaberite predmet:");
+                Console.WriteLine(string.Join(", ", svi_predmeti));
+                if (!int.TryParse(Console.ReadLine(), out int odgovor))
+                {
+                    Console.WriteLine("unesite ispravan broj!");
+                    continue;
+                }
+                predmet = SchoolManagementService.svi_predmeti[odgovor];
+                break;
+            }
+
+            Odeljenje odeljenje;
+            List<string> sva_odeljenja = new List<string>();
+
+            foreach (KeyValuePair<int, Odeljenje> od in
+                SchoolManagementService.sva_odeljenja)
+            {
+                sva_odeljenja.Add($"{od.Key} = {od.Value.VratiOdeljenje()}");
+            }
+            while (true)
+            {
+                Console.WriteLine("izaberite odeljenje:");
+                Console.WriteLine(string.Join(", ", sva_odeljenja));
+                if (!int.TryParse(Console.ReadLine(), out int odgovor))
+                {
+                    Console.WriteLine("unesite ispravan broj!");
+                    continue;
+                }
+                odeljenje = SchoolManagementService.sva_odeljenja[odgovor];
+                break;
+            }
+
+            Nastavnik nastavnik = new Nastavnik(ime, prezime, uzrast,
+                datum_rodjenja, predmet, odeljenje);
+
             Nastavnici.Add(id, nastavnik);
             Console.WriteLine($"nastavnik je uspesno dodat!");
         }
 
-        public void ObrisiUcenika(int id)
+        public void ObrisiUcenika()
         {
+            int id;
+            while (true)
+            {
+                Console.WriteLine("unesite id ucenika:");
+                if (!int.TryParse(Console.ReadLine(), out int odgovor))
+                {
+                    Console.WriteLine("unesite ispravan id!");
+                    continue;
+                }
+                id = odgovor;
+                break;
+            }
             if (!Ucenici.ContainsKey(id))
             {
                 Console.WriteLine($"ucenik ne postoji!");
@@ -74,8 +249,20 @@ namespace csOOPproject.Models
             Console.WriteLine("ucenik je uspesno obrisan!");
         }
 
-        public void ObrisiNastavnika(int id)
+        public void ObrisiNastavnika()
         {
+            int id;
+            while (true)
+            {
+                Console.WriteLine("unesite id ucenika:");
+                if (!int.TryParse(Console.ReadLine(), out int odgovor))
+                {
+                    Console.WriteLine("unesite ispravan id!");
+                    continue;
+                }
+                id = odgovor;
+                break;
+            }
             if (!Nastavnici.ContainsKey(id))
             {
                 Console.WriteLine($"nastavnik ne postoji!");

@@ -4,17 +4,23 @@ namespace csOOPproject.Models
 {
     public sealed class Odeljenje
     {
-        public short Godina { get; private set; }
-        public short Razred { get; private set; }
-        public Odeljenje(short godina, short razred)
+        public int Godina { get; private set; }
+        public int Razred { get; private set; }
+        public Odeljenje(int godina, int razred)
         {
             Godina = godina;
             Razred = razred;
         }
         public void PrikaziInformacije()
         {
-            Console.WriteLine($"godina: {Godina}");
-            Console.WriteLine($"odeljenje: {Razred}");
+            Console.WriteLine($"godina odeljenja: {Godina}");
+            Console.WriteLine($"razred: {Razred}");
         }
+
+        public string VratiOdeljenje()
+        {
+            return $"{Godina}-{Razred}";
+        }
+
     }
 }

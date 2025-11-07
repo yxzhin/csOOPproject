@@ -12,6 +12,13 @@ namespace csOOPproject.Services
         public static Predmet default_predmet1 = new Predmet("predmet1");
         public static Predmet default_predmet2 = new Predmet("predmet2");
         public static Predmet default_predmet3 = new Predmet("predmet3");
+        public static Dictionary<int, Predmet> svi_predmeti
+            = new Dictionary<int, Predmet>
+            {
+                {1, default_predmet1},
+                {2, default_predmet2},
+                {3, default_predmet3},
+            };
 
         public static Nastavnik default_nastavnik1
             = new Nastavnik("nastavnik1", "nastavnik2", 37,
@@ -28,6 +35,13 @@ namespace csOOPproject.Services
         public static Odeljenje default_razred1 = new Odeljenje(1, 2);
         public static Odeljenje default_razred2 = new Odeljenje(3, 4);
         public static Odeljenje default_razred3 = new Odeljenje(2, 3);
+        public static Dictionary<int, Odeljenje> sva_odeljenja
+            = new Dictionary<int, Odeljenje>
+        {
+                {1, default_razred1},
+                {2, default_razred2},
+                {3, default_razred3},
+        };
 
         public static Direktor direktor
             = new Direktor("direktor", "direktor", 73,

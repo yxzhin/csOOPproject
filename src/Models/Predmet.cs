@@ -14,6 +14,5 @@ namespace csOOPproject.Models
             Console.WriteLine($"naziv predmeta: {Naziv}");
         }
 
-
     }
 }

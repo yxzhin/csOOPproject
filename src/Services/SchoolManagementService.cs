@@ -33,7 +33,37 @@ namespace csOOPproject.Services
             = new Direktor("direktor", "direktor", 73,
                 new DateTime(1937, 7, 3), "ril73");
 
-        public static Dictionary<Osoba, string> sifre = new Dictionary<Osoba, string>();
+        public static Dictionary<Osoba, string> sifre = new Dictionary<Osoba, string>
+        {
+            { default_nastavnik1, "ril1" },
+            { default_nastavnik2, "ril2" },
+            { default_nastavnik3, "ril3" },
+        };
+
+        public Osoba Login(string sifra)
+        {
+            if (string.IsNullOrEmpty(sifra))
+            {
+                Console.WriteLine();
+                return null;
+            }
+            if (sifra == direktor.Sifra)
+            {
+                return direktor;
+            }
+            else
+            {
+                foreach (KeyValuePair<Osoba, string> kvp in sifre)
+                {
+                    if (kvp.Value == sifra)
+                    {
+                        return kvp.Key;
+                    }
+                }
+                return null;
+            }
+        }
+
 
     }
 }

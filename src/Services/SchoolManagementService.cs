@@ -40,14 +40,15 @@ namespace csOOPproject.Services
             { default_nastavnik3, "ril3" },
         };
 
-        public Osoba Login(string sifra)
+        public static Osoba Login(string puno_ime, string sifra)
         {
-            if (string.IsNullOrEmpty(sifra))
+            if (string.IsNullOrEmpty(puno_ime)
+            || string.IsNullOrEmpty(sifra))
             {
-                Console.WriteLine();
                 return null;
             }
-            if (sifra == direktor.Sifra)
+            if (puno_ime == "direktor"
+            && sifra == direktor.Sifra)
             {
                 return direktor;
             }
@@ -55,7 +56,8 @@ namespace csOOPproject.Services
             {
                 foreach (KeyValuePair<Osoba, string> kvp in sifre)
                 {
-                    if (kvp.Value == sifra)
+                    if (kvp.Key.PunoIme() == puno_ime
+                    && kvp.Value == sifra)
                     {
                         return kvp.Key;
                     }

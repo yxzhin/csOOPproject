@@ -25,5 +25,10 @@ namespace csOOPproject.Models
             Console.WriteLine($"datum rodjenja: {Datum_rodjenja.ToUniversalTime()}");
         }
 
+        public string PunoIme()
+        {
+            return $"{Ime} {Prezime}";
+        }
+
     }
 }

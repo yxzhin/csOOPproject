@@ -13,8 +13,7 @@ namespace csOOPproject.Models
         }
         public void PrikaziInformacije()
         {
-            Console.WriteLine($"godina odeljenja: {Godina}");
-            Console.WriteLine($"razred: {Razred}");
+            Console.WriteLine($"odeljenje: {VratiOdeljenje()}");
         }
 
         public string VratiOdeljenje()

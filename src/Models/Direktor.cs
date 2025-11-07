@@ -29,24 +29,22 @@ namespace csOOPproject.Models
         public void PrikaziSveOsobe()
         {
             Console.WriteLine("ucenici:");
+            if (Ucenici.Count == 0)
+            {
+                Console.WriteLine("nema ucenika!");
+            }
             foreach (KeyValuePair<int, Ucenik> ucenik in Ucenici)
             {
-                if (Ucenici.Count == 0)
-                {
-                    Console.WriteLine("nema ucenika!");
-                    break;
-                }
                 Console.WriteLine($"ucenik sa id {ucenik.Key}:");
                 ucenik.Value.PrikaziInformacije();
             }
             Console.WriteLine("nastavnici:");
+            if (Nastavnici.Count == 0)
+            {
+                Console.WriteLine("nema nastavnika!");
+            }
             foreach (KeyValuePair<int, Nastavnik> nastavnik in Nastavnici)
             {
-                if (Nastavnici.Count == 0)
-                {
-                    Console.WriteLine("nema nastavnika!");
-                    break;
-                }
                 Console.WriteLine($"nastavnik sa id {nastavnik.Key}:");
                 nastavnik.Value.PrikaziInformacije();
             }
@@ -114,7 +112,8 @@ namespace csOOPproject.Models
             {
                 Console.WriteLine("izaberite odeljenje:");
                 Console.WriteLine(string.Join(", ", sva_odeljenja));
-                if (!int.TryParse(Console.ReadLine(), out int odgovor))
+                if (!int.TryParse(Console.ReadLine(), out int odgovor)
+                    || !SchoolManagementService.sva_odeljenja.ContainsKey(odgovor))
                 {
                     Console.WriteLine("unesite ispravan broj!");
                     continue;
@@ -122,7 +121,13 @@ namespace csOOPproject.Models
                 odeljenje = SchoolManagementService.sva_odeljenja[odgovor];
                 break;
             }
+
+            Console.WriteLine("unesite sifru za tog novog ucenika:");
+            string sifra = Console.ReadLine();
+
             Ucenik ucenik = new Ucenik(ime, prezime, uzrast, datum_rodjenja, odeljenje);
+
+            SchoolManagementService.sifre.Add(ucenik, sifra);
             Ucenici.Add(id, ucenik);
             Console.WriteLine($"ucenik je uspesno dodat!");
         }
@@ -189,7 +194,8 @@ namespace csOOPproject.Models
             {
                 Console.WriteLine("izaberite predmet:");
                 Console.WriteLine(string.Join(", ", svi_predmeti));
-                if (!int.TryParse(Console.ReadLine(), out int odgovor))
+                if (!int.TryParse(Console.ReadLine(), out int odgovor)
+                    || !SchoolManagementService.svi_predmeti.ContainsKey(odgovor))
                 {
                     Console.WriteLine("unesite ispravan broj!");
                     continue;
@@ -210,7 +216,8 @@ namespace csOOPproject.Models
             {
                 Console.WriteLine("izaberite odeljenje:");
                 Console.WriteLine(string.Join(", ", sva_odeljenja));
-                if (!int.TryParse(Console.ReadLine(), out int odgovor))
+                if (!int.TryParse(Console.ReadLine(), out int odgovor)
+                    || !SchoolManagementService.sva_odeljenja.ContainsKey(odgovor))
                 {
                     Console.WriteLine("unesite ispravan broj!");
                     continue;
@@ -219,9 +226,13 @@ namespace csOOPproject.Models
                 break;
             }
 
+            Console.WriteLine("unesite sifru za tog novog nastavnika:");
+            string sifra = Console.ReadLine();
+
             Nastavnik nastavnik = new Nastavnik(ime, prezime, uzrast,
                 datum_rodjenja, predmet, odeljenje);
 
+            SchoolManagementService.sifre.Add(nastavnik, sifra);
             Nastavnici.Add(id, nastavnik);
             Console.WriteLine($"nastavnik je uspesno dodat!");
         }
@@ -245,6 +256,7 @@ namespace csOOPproject.Models
                 Console.WriteLine($"ucenik ne postoji!");
                 return;
             }
+            _ = SchoolManagementService.sifre.Remove(Ucenici[id]);
             _ = Ucenici.Remove(id);
             Console.WriteLine("ucenik je uspesno obrisan!");
         }
@@ -254,7 +266,7 @@ namespace csOOPproject.Models
             int id;
             while (true)
             {
-                Console.WriteLine("unesite id ucenika:");
+                Console.WriteLine("unesite id nastavnika:");
                 if (!int.TryParse(Console.ReadLine(), out int odgovor))
                 {
                     Console.WriteLine("unesite ispravan id!");
@@ -268,6 +280,7 @@ namespace csOOPproject.Models
                 Console.WriteLine($"nastavnik ne postoji!");
                 return;
             }
+            _ = SchoolManagementService.sifre.Remove(Nastavnici[id]);
             _ = Nastavnici.Remove(id);
             Console.WriteLine("nastavnik je uspesno obrisan!");
         }

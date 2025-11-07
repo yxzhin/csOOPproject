@@ -21,8 +21,8 @@ namespace csOOPproject.Models
         {
             Console.WriteLine($"ime: {Ime}");
             Console.WriteLine($"prezime: {Prezime}");
-            Console.WriteLine($"uzrast: {Uzrast:N}");
-            Console.WriteLine($"datum rodjenja: {Datum_rodjenja.ToUniversalTime()}");
+            Console.WriteLine($"uzrast: {Uzrast}");
+            Console.WriteLine($"datum rodjenja: {Datum_rodjenja.ToShortDateString()}");
         }
 
         public string PunoIme()

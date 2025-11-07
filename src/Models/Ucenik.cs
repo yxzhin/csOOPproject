@@ -77,6 +77,11 @@ namespace csOOPproject.Models
                 Console.WriteLine($"predmet nije pronadjen!");
                 return -1;
             }
+            if (Ocene[predmet].Count == 0)
+            {
+                Console.WriteLine("nema ocena!");
+                return 0;
+            }
             int suma_ocena = Ocene[predmet].Sum();
             int broj_ocena = Ocene[predmet].Count;
             double prosek = suma_ocena / broj_ocena;

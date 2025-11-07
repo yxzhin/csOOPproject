@@ -20,18 +20,6 @@ namespace csOOPproject.Services
                 {3, default_predmet3},
             };
 
-        public static Nastavnik default_nastavnik1
-            = new Nastavnik("nastavnik1", "nastavnik2", 37,
-                new DateTime(2037, 7, 3), default_predmet1, default_razred1);
-
-        public static Nastavnik default_nastavnik2
-            = new Nastavnik("nastavnik2", "nastavnik2", 42,
-                new DateTime(1973, 3, 7), default_predmet2, default_razred3);
-
-        public static Nastavnik default_nastavnik3
-            = new Nastavnik("nastavnik3", "nastavnik3", 73,
-                new DateTime(2073, 7, 3), default_predmet2, default_razred3);
-
         public static Odeljenje default_razred1 = new Odeljenje(1, 2);
         public static Odeljenje default_razred2 = new Odeljenje(3, 4);
         public static Odeljenje default_razred3 = new Odeljenje(2, 3);
@@ -42,6 +30,18 @@ namespace csOOPproject.Services
                 {2, default_razred2},
                 {3, default_razred3},
         };
+
+        public static Nastavnik default_nastavnik1
+            = new Nastavnik("nastavnik1", "nastavnik1", 37,
+                new DateTime(2037, 7, 3), default_predmet1, default_razred1);
+
+        public static Nastavnik default_nastavnik2
+            = new Nastavnik("nastavnik2", "nastavnik2", 42,
+                new DateTime(1973, 3, 7), default_predmet2, default_razred3);
+
+        public static Nastavnik default_nastavnik3
+            = new Nastavnik("nastavnik3", "nastavnik3", 73,
+                new DateTime(2073, 7, 3), default_predmet2, default_razred3);
 
         public static Direktor direktor
             = new Direktor("direktor", "direktor", 73,
@@ -61,7 +61,7 @@ namespace csOOPproject.Services
             {
                 return null;
             }
-            if (puno_ime == "direktor"
+            if (puno_ime.Trim().ToLower() == "direktor"
             && sifra == direktor.Sifra)
             {
                 return direktor;
@@ -70,7 +70,8 @@ namespace csOOPproject.Services
             {
                 foreach (KeyValuePair<Osoba, string> kvp in sifre)
                 {
-                    if (kvp.Key.PunoIme() == puno_ime
+                    //Console.WriteLine(kvp.Key.PunoIme().Trim().ToLower());
+                    if (kvp.Key.PunoIme().Trim().ToLower() == puno_ime.ToLower()
                     && kvp.Value == sifra)
                     {
                         return kvp.Key;

@@ -5,16 +5,19 @@ namespace csOOPproject.Models
 {
     public sealed class Direktor : Osoba
     {
+
+        public string Sifra { get; private set; }
+
         public Dictionary<int, Ucenik> Ucenici { get; private set; }
             = new Dictionary<int, Ucenik>();
         public Dictionary<int, Nastavnik> Nastavnici { get; private set; }
             = new Dictionary<int, Nastavnik>();
 
         public Direktor(string ime, string prezime, int uzrast,
-            DateTime datum_rodjenja)
+            DateTime datum_rodjenja, string sifra)
             : base(ime, prezime, uzrast, datum_rodjenja)
         {
-            //pass
+            Sifra = sifra;
         }
 
         public override void PrikaziInformacije()

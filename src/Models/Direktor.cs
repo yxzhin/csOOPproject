@@ -1,6 +1,7 @@
 ﻿namespace csOOPproject.Models
 {
-    public class Event
+    public sealed class Direktor : Osoba
     {
+
     }
 }

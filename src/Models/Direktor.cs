@@ -12,7 +12,12 @@ namespace csOOPproject.Models
         public static Dictionary<int, Ucenik> Ucenici { get; private set; }
             = new Dictionary<int, Ucenik>();
         public static Dictionary<int, Nastavnik> Nastavnici { get; private set; }
-            = new Dictionary<int, Nastavnik>();
+            = new Dictionary<int, Nastavnik>
+            {
+                {1, SchoolManagementService.default_nastavnik1 },
+                {2, SchoolManagementService.default_nastavnik2 },
+                {3, SchoolManagementService.default_nastavnik3 },
+            };
 
         public Direktor(string ime, string prezime, int uzrast,
             DateTime datum_rodjenja, string sifra)
@@ -59,6 +64,11 @@ namespace csOOPproject.Models
                 if (!int.TryParse(Console.ReadLine(), out int odgovor))
                 {
                     Console.WriteLine("unesite ispravan id!");
+                    continue;
+                }
+                if (Ucenici.ContainsKey(odgovor))
+                {
+                    Console.WriteLine("id je vec zauzet!");
                     continue;
                 }
                 id = odgovor;
@@ -141,6 +151,11 @@ namespace csOOPproject.Models
                 if (!int.TryParse(Console.ReadLine(), out int odgovor))
                 {
                     Console.WriteLine("unesite ispravan id!");
+                    continue;
+                }
+                if (Nastavnici.ContainsKey(odgovor))
+                {
+                    Console.WriteLine("id je vec zauzet!");
                     continue;
                 }
                 id = odgovor;
